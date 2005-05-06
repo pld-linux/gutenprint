@@ -441,7 +441,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if %{with foomatic}
-%files -n foomatic-db-gimp-print
+%files -n foomatic-db-gutenprint
 %defattr(644,root,root,755)
 %{_datadir}/foomatic/db/source/driver/*
 %{_datadir}/foomatic/db/source/opt/*
