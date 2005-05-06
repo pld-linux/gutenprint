@@ -1,0 +1,25 @@
+--- gimp-print-5.0.0-alpha3/configure.ac.orig	2004-05-09 18:28:19.000000000 +0200
++++ gimp-print-5.0.0-alpha3/configure.ac	2004-05-15 12:26:19.394885768 +0200
+@@ -584,8 +584,6 @@
+ else
+   if test x$ENABLE_DEBUG = xyes ; then
+     STP_ADD_COMPILER_ARG([-g])
+-  else
+-    STP_ADD_FIRST_COMPILER_ARG([-O6 -O3 -O2 -O1 -O])
+   fi
+ fi
+ if test x$ENABLE_PROFILE = xyes ; then
+@@ -810,13 +808,6 @@
+   AC_MSG_WARN([Please read the release notes carefully!])
+ fi
+ 
+-dnl Define LTLIBOBJS
+-AC_CONFIG_COMMANDS_PRE(
+-[LTLIBOBJS=`echo "$LIB@&t@OBJS" | sed 's/\.o/.lo/g'`
+-AC_SUBST(LTLIBOBJS)
+-LTALLOCA=`echo "$ALLOCA" | sed 's/\.o/.lo/g'`
+-AC_SUBST(LTALLOCA)])
+-
+ dnl Definitions
+ AC_DEFINE_UNQUOTED(CUPS_DATADIR, "${cups_conf_datadir}", [CUPS data directory.])
+ 

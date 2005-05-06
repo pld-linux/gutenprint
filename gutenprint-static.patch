@@ -1,0 +1,28 @@
+--- gimp-print-5.0.0-beta2/configure.ac.orig	2004-12-04 00:53:03.946179000 +0100
++++ gimp-print-5.0.0-beta2/configure.ac	2004-12-04 01:14:03.633677560 +0100
+@@ -287,24 +287,7 @@
+     dlopen) [WITH_MODULES]="dlopen";  AC_MSG_RESULT([dlopen]) ;;
+     static) [WITH_MODULES]="static";  AC_MSG_RESULT([static]) ;;
+     *) AC_MSG_ERROR([${withval}: not a valid module loader]) ;;
+-                      ],[
+-    # if static libraries are enabled, modules must be static
+-    if test x$enable_static = xyes; then
+-      [WITH_MODULES]="static"
+-    else
+-      [WITH_MODULES]="yes"]
+-    fi)
+-
+-# Abort if a broken configuration was required
+-if test x$enable_static = xyes; then
+-  if test $WITH_MODULES = no; then
+-    :
+-  elif test $WITH_MODULES = static; then
+-    :
+-  else
+-    AC_MSG_ERROR([--disable-static must be used with --with-modules])
+-  fi
+-fi 
++                      ],[WITH_MODULES="yes"])
+ 
+ STP_ARG_ENABLE([debug],
+                [turn on debugging in build],
