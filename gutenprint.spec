@@ -44,6 +44,7 @@ BuildRequires:	texinfo-texi2dvi
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		gimpplugindir	%(gimptool --gimpplugindir)/plug-ins
+%define		cupslibdir	%(cups-config --serverbin)
 
 %description
 Gutenprint is a collection of very high quality printer drivers for
@@ -410,22 +411,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/cups-*
 %attr(755,root,root) %{_sbindir}/cups-*
 %{_datadir}/cups/calibrate.ppm
-#%{_datadir}/cups/model/C/*
-%{_datadir}/cups/model/gutenprint/en/*
-#%lang(en_GB) %{_datadir}/cups/model/gutenprint/en_GB/*
-#%lang(da) %{_datadir}/cups/model/gutenprint/da/*
-#%lang(de) %{_datadir}/cups/model/gutenprint/de/*
-#%lang(el) %{_datadir}/cups/model/gutenprint/el/*
-#%lang(es) %{_datadir}/cups/model/gutenprint/es/*
-#%lang(fr) %{_datadir}/cups/model/gutenprint/fr/*
-#%lang(nb) %{_datadir}/cups/model/gutenprint/nb/*
-#%lang(nl) %{_datadir}/cups/model/gutenprint/nl/*
-#%lang(pl) %{_datadir}/cups/model/gutenprint/pl/*
-#%lang(pt) %{_datadir}/cups/model/gutenprint/pt/*
-#%lang(sk) %{_datadir}/cups/model/gutenprint/sk/*
-#%lang(sv) %{_datadir}/cups/model/gutenprint/sv/*
-%attr(755,root,root) %{_libdir}/cups/backend/*
-%attr(755,root,root) %{_libdir}/cups/filter/*
+%dir %{_datadir}/cups/model/gutenprint
+%dir %{_datadir}/cups/model/gutenprint/*
+%{_datadir}/cups/model/gutenprint/*/C
+%attr(755,root,root) %{cupslibdir}/backend/*
+%attr(755,root,root) %{cupslibdir}/filter/*
 %{_mandir}/man8/*cups*.8*
 %endif
 
