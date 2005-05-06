@@ -146,6 +146,7 @@ Summary(pt_BR):	Cabeçalhos e arquivos de desenvolvimento para o libgutenprintui
 Group:		Development/Libraries
 Requires:	libgutenprintui = %{version}-%{release}
 Requires:	libgutenprint-devel = %{version}-%{release}
+Requires:	gtk+2-devel >= 2.0.0
 Obsoletes:	libgimprintui-devel
 
 %description -n libgutenprintui-devel
