@@ -14,12 +14,12 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Name:		gutenprint
 Version:	5.0.0
-%define	bver	beta3
+%define	bver	beta4
 Release:	0.%{bver}.1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}-%{bver}.tar.bz2
-# Source0-md5:	8cfa54029f5affaa578a608fe0cba52d
+# Source0-md5:	2ae4b958916a9b39773bdbe524f26f4a
 Patch0:		%{name}-usb.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-locale-names.patch
@@ -369,7 +369,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/%{name}/%{version}*/modules/*.so
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/%{version}*
-%{_mandir}/man7/gutenprint-*.7*
+#%{_mandir}/man7/gutenprint-*.7*
 
 %files -n libgutenprint-devel
 %defattr(644,root,root,755)
@@ -378,7 +378,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgutenprint.la
 %{_includedir}/gutenprint
 %{_pkgconfigdir}/gutenprint.pc
-%{_mandir}/man3/gutenprint.3*
+#%{_mandir}/man3/gutenprint.3*
 
 %files -n libgutenprint-static
 %defattr(644,root,root,755)
@@ -427,7 +427,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ijs}
 %files ijs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/ijsgutenprint
+%attr(755,root,root) %{_bindir}/ijsgutenprint*
 %{_mandir}/man1/ijsgutenprint.1*
 %endif
 
