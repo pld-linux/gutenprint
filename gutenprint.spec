@@ -36,9 +36,13 @@ BuildRequires:	gettext-autopoint
 %{?with_ijs:BuildRequires:	ghostscript-ijs-devel}
 %{?with_gimp:BuildRequires:	gimp-devel >= 1:2.0.0}
 BuildRequires:	gtk+2-devel >= 2.0.0
+BuildRequires:	libpng-devel
+BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	openssl-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-perlprov >= 3.0.3-16
+BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -220,6 +224,7 @@ Summary(pt_BR):	Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
 Requires:	libgutenprint = %{version}-%{release}
 Requires:	cups >= 1.1.15
+Obsoletes:	gimp-print-cups
 
 %description cups
 Gutenprint as CUPS plugin.
@@ -293,6 +298,7 @@ Wtyczka print dla Gimpa.
 mv -f po/{no,nb}.po
 
 echo 'AC_DEFUN([AM_PATH_GTK],[$3])' > m4/gtk.m4
+%{__sed} -i 's,AM_PATH_GLIB,,' m4/stp_gimp.m4
 
 %build
 rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
