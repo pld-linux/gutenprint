@@ -14,16 +14,15 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Name:		gutenprint
 Version:	5.0.0
-%define	bver	beta4
+%define	bver	rc1
 Release:	0.%{bver}.1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}-%{bver}.tar.bz2
-# Source0-md5:	2ae4b958916a9b39773bdbe524f26f4a
+# Source0-md5:	4ac4602e81713825665435205661bbd1
 Patch0:		%{name}-usb.patch
 Patch1:		%{name}-opt.patch
-Patch2:		%{name}-locale-names.patch
-Patch3:		%{name}-static.patch
+Patch2:		%{name}-static.patch
 # http://gutenprint.sf.net/ not ready yet
 URL:		http://gimp-print.sf.net/
 BuildRequires:	autoconf >= 2.53
@@ -293,9 +292,6 @@ Wtyczka print dla Gimpa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-
-mv -f po/{no,nb}.po
 
 echo 'AC_DEFUN([AM_PATH_GTK],[$3])' > m4/gtk.m4
 %{__sed} -i 's,AM_PATH_GLIB,,' m4/stp_gimp.m4
@@ -316,19 +312,22 @@ rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
 	--with%{!?with_gimp:out}-gimp2 \
 	--with%{!?with_ijs:out}-ijs \
 	--with%{!?with_foomatic:out}-foomatic \
+	--with%{!?with_foomatic:out}-foomatic3 \
 	%{?with_static_libs:--enable-static} \
 	--with-modules=dlopen \
 	--enable-escputil \
 	%{!?with_cups:--disable-cups-ppds} \
 	--disable-libgutenprintui \
+	--disable-rpath \
 	--disable-static-genppd \
 	--disable-translated-cups-ppds \
 	--enable-cups-level3-ppds \
 	--enable-lexmarkutil \
+	--enable-libgutenprintui2 \
 	--enable-samples \
+	--enable-shared \
 	--enable-user-guide \
 	--enable-xmldef \
-	--disable-rpath \
 	--without-ghost 
 %{__make}
 
@@ -368,7 +367,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc-installed/{gutenprint.pdf,html,users-guide.pdf}
 %doc doc/FAQ.html AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libgutenprint-*.so
+%attr(755,root,root) %{_libdir}/libgutenprint.so.*.*
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/%{version}*
 %dir %{_libdir}/%{name}/%{version}*/modules
@@ -392,7 +391,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgutenprintui
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgutenprintui2-*.so
+%attr(755,root,root) %{_libdir}/libgutenprintui2.so.*.*
 
 %files -n libgutenprintui-devel
 %defattr(644,root,root,755)
