@@ -4,6 +4,7 @@
 %bcond_without	gimp		# build GIMP plugin subpackage
 %bcond_without	ijs		# don't build IJS server for Ghostscript
 %bcond_without	foomatic	# don't generate foomatic data
+%bcond_without	static_libs	# don't build static library
 #
 # TODO:
 # - port info_and_pdf_only.patch and install documentation in correct place.
@@ -307,16 +308,16 @@ rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
 
 %configure \
 	%{?debug:--enable-debug} \
+	%{!?with_static_libs:--disable-static} \
+	%{!?with_cups:--disable-cups-ppds} \
 	--with%{!?with_cups:out}-cups \
 	--without-gimp \
 	--with%{!?with_gimp:out}-gimp2 \
 	--with%{!?with_ijs:out}-ijs \
 	--with%{!?with_foomatic:out}-foomatic \
 	--with%{!?with_foomatic:out}-foomatic3 \
-	%{?with_static_libs:--enable-static} \
 	--with-modules=dlopen \
 	--enable-escputil \
-	%{!?with_cups:--disable-cups-ppds} \
 	--disable-libgutenprintui \
 	--disable-rpath \
 	--disable-static-genppd \
@@ -385,9 +386,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/gutenprint.pc
 #%{_mandir}/man3/gutenprint.3*
 
+%if %{with static_libs}
 %files -n libgutenprint-static
 %defattr(644,root,root,755)
 %{_libdir}/libgutenprint.a
+%endif
 
 %files -n libgutenprintui
 %defattr(644,root,root,755)
@@ -400,9 +403,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/gutenprintui2
 %{_pkgconfigdir}/gutenprintui2.pc
 
+%if %{with static_libs}
 %files -n libgutenprintui-static
 %defattr(644,root,root,755)
 %{_libdir}/libgutenprintui2.a
+%endif
 
 %files -n escputil
 %defattr(644,root,root,755)
