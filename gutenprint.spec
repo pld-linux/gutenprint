@@ -15,12 +15,12 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Name:		gutenprint
 Version:	5.0.0
-%define	bver	rc2
+%define	bver	rc3
 Release:	0.%{bver}.1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}-%{bver}.tar.bz2
-# Source0-md5:	82850c8fa82fd1b34c9829cc20901613
+# Source0-md5:	e364c3752f21ee74344c290b92cb0564
 Patch0:		%{name}-usb.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-static.patch
@@ -185,6 +185,7 @@ Summary:	Tool for Epson ink printers
 Summary(pl):	Narzêdzie do drukarek atramentowych Epson
 Summary(pt_BR):	Ferramenta de manutenção de impressoras ESPSON Stylus (R)
 Group:		Applications/Printing
+Requires:	libgutenprint = %{version}-%{release}
 
 %description -n escputil
 ESPSON Stylus (R) Printers Maintenance tool. This command line tool
@@ -329,7 +330,7 @@ rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
 	--enable-shared \
 	--enable-user-guide \
 	--enable-xmldef \
-	--without-ghost 
+	--without-ghost
 %{__make}
 
 %install
