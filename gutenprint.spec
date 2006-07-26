@@ -11,11 +11,11 @@
 # - think about not including PPDs in package and allow generation by cups-genppd
 #
 %include	/usr/lib/rpm/macros.perl
+%define	bver	rc3
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Name:		gutenprint
 Version:	5.0.0
-%define	bver	rc3
 Release:	0.%{bver}.1
 License:	GPL
 Group:		Applications/Printing
@@ -25,7 +25,7 @@ Patch0:		%{name}-usb.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-static.patch
 # http://gutenprint.sf.net/ not ready yet
-URL:		http://gimp-print.sf.net/
+URL:		http://gimp-print.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 %{?with_cups:BuildRequires:	cups-devel >= 1.1.15}
@@ -148,9 +148,9 @@ Summary:	Header files for libgutenprintui library
 Summary(pl):	Pliki nag³ówkowe biblioteki libgutenprintui
 Summary(pt_BR):	Cabeçalhos e arquivos de desenvolvimento para o libgutenprintui
 Group:		Development/Libraries
-Requires:	libgutenprintui = %{version}-%{release}
-Requires:	libgutenprint-devel = %{version}-%{release}
 Requires:	gtk+2-devel >= 2.0.0
+Requires:	libgutenprint-devel = %{version}-%{release}
+Requires:	libgutenprintui = %{version}-%{release}
 Obsoletes:	libgimprintui-devel
 
 %description -n libgutenprintui-devel
@@ -223,8 +223,8 @@ Summary:	Gutenprint as CUPS plugin
 Summary(pl):	Gutenprint jako wtyczka do CUPS
 Summary(pt_BR):	Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
-Requires:	libgutenprint = %{version}-%{release}
 Requires:	cups >= 1.1.15
+Requires:	libgutenprint = %{version}-%{release}
 Obsoletes:	gimp-print-cups
 
 %description cups
@@ -289,7 +289,7 @@ print plugin for Gimp.
 %description -n gimp-plugin-print -l pl
 Wtyczka print dla Gimpa.
 
-%prep 
+%prep
 %setup -q -n %{name}-%{version}-%{bver}
 %patch0 -p1
 %patch1 -p1
