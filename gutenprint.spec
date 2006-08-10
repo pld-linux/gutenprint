@@ -11,21 +11,19 @@
 # - think about not including PPDs in package and allow generation by cups-genppd
 #
 %include	/usr/lib/rpm/macros.perl
-%define	bver	rc3
 Summary:	Collection of high-quality printer drivers
 Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
 Name:		gutenprint
 Version:	5.0.0
-Release:	0.%{bver}.1
+Release:	0.1
 License:	GPL
 Group:		Applications/Printing
-Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}-%{bver}.tar.bz2
-# Source0-md5:	e364c3752f21ee74344c290b92cb0564
+Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
+# Source0-md5:	ede8acbd1e94c9d4fd366fb37e335bfb
 Patch0:		%{name}-usb.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-static.patch
-# http://gutenprint.sf.net/ not ready yet
-URL:		http://gimp-print.sourceforge.net/
+URL:		http://gutenprint.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 %{?with_cups:BuildRequires:	cups-devel >= 1.1.15}
@@ -290,7 +288,7 @@ print plugin for Gimp.
 Wtyczka print dla Gimpa.
 
 %prep
-%setup -q -n %{name}-%{version}-%{bver}
+%setup -q 
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -367,7 +365,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgutenprint -f %{name}.lang
 %defattr(644,root,root,755)
-%doc doc-installed/{gutenprint.pdf,html,users-guide.pdf}
+%doc doc-installed/{gutenprint.pdf,gutenprint-users-manual.pdf}
 %doc doc/FAQ.html AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libgutenprint.so.*.*
 %dir %{_libdir}/%{name}
