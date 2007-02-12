@@ -12,7 +12,7 @@
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	Collection of high-quality printer drivers
-Summary(pl):	Zestaw wysokiej jako¶ci sterowników do drukarek
+Summary(pl.UTF-8):   Zestaw wysokiej jakoÅ›ci sterownikÃ³w do drukarek
 Name:		gutenprint
 Version:	5.0.0
 Release:	0.2
@@ -62,23 +62,23 @@ Windows and Macintosh.
 
 This package was previously named gimp-print.
 
-%description -l pl
-Gutenprint to zbiór bardzo wysokiej jako¶ci sterowników do drukarek
-dla systemów UNIX/Linux. Celem tego projektu jest jak najlepsza jako¶æ
-wydruku. Do³±czone do tego pakietu s±: wtyczka dla programu GIMP (st±d
-nazwa), sterownik CUPS i sterownik Ghostscriptu. Sterownik umo¿liwia
-bezpo¶redni± wspó³pracê z wieloma kolejkami wydruku. Dodatkowo
-do³±czonych jest wiele programów do obs³ugi drukarki. Wielu
-u¿ytkowników twierdzi ze jako¶æ wydruków na najlepszych drukarkach
-Epson Stylus dorównuje albo nawet przerasta jako¶ci± to, co jest
+%description -l pl.UTF-8
+Gutenprint to zbiÃ³r bardzo wysokiej jakoÅ›ci sterownikÃ³w do drukarek
+dla systemÃ³w UNIX/Linux. Celem tego projektu jest jak najlepsza jakoÅ›Ä‡
+wydruku. DoÅ‚Ä…czone do tego pakietu sÄ…: wtyczka dla programu GIMP (stÄ…d
+nazwa), sterownik CUPS i sterownik Ghostscriptu. Sterownik umoÅ¼liwia
+bezpoÅ›redniÄ… wspÃ³Å‚pracÄ™ z wieloma kolejkami wydruku. Dodatkowo
+doÅ‚Ä…czonych jest wiele programÃ³w do obsÅ‚ugi drukarki. Wielu
+uÅ¼ytkownikÃ³w twierdzi ze jakoÅ›Ä‡ wydrukÃ³w na najlepszych drukarkach
+Epson Stylus dorÃ³wnuje albo nawet przerasta jakoÅ›ciÄ… to, co jest
 oferowane przez sterowniki dla Windows i MacOS.
 
-Ten pakiet wcze¶niej nazywa³ siê gimp-print.
+Ten pakiet wczeÅ›niej nazywaÅ‚ siÄ™ gimp-print.
 
 %package -n libgutenprint
 Summary:	libgutenprint library
-Summary(pl):	Biblioteka libgutenprint
-Summary(pt_BR):	Bibliotecas dinâmicas para impressão de alta qualidade
+Summary(pl.UTF-8):   Biblioteka libgutenprint
+Summary(pt_BR.UTF-8):   Bibliotecas dinÃ¢micas para impressÃ£o de alta qualidade
 Group:		Libraries
 # uncomment when it becomes stable
 #Obsoletes:	gimp-print-lib
@@ -87,13 +87,13 @@ Obsoletes:	libgimprint
 %description -n libgutenprint
 libgutenprint library.
 
-%description -n libgutenprint -l pl
+%description -n libgutenprint -l pl.UTF-8
 Biblioteka libgutenprint.
 
 %package -n libgutenprint-devel
 Summary:	Header files for libgutenprint library
-Summary(pl):	Pliki nag³ówkowe biblioteki libgutenprint
-Summary(pt_BR):	Cabeçalhos e arquivos de desenvolvimento para o libgutenprint
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki libgutenprint
+Summary(pt_BR.UTF-8):   CabeÃ§alhos e arquivos de desenvolvimento para o libgutenprint
 Group:		Development/Libraries
 Requires:	libgutenprint = %{version}-%{release}
 #Obsoletes:	gimp-print-devel
@@ -102,17 +102,17 @@ Obsoletes:	libgimpprint-devel
 %description -n libgutenprint-devel
 Header files for libgutenprint library.
 
-%description -n libgutenprint-devel -l pl
-Pliki nag³ówkowe biblioteki libgutenprint.
+%description -n libgutenprint-devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki libgutenprint.
 
-%description -n libgutenprint-devel -l pt_BR
-Este são os arquivos de desenvolvimento para compilar programas com a
+%description -n libgutenprint-devel -l pt_BR.UTF-8
+Este sÃ£o os arquivos de desenvolvimento para compilar programas com a
 biblioteca libgutenprint.
 
 %package -n libgutenprint-static
 Summary:	libgutenprint static library
-Summary(pl):	Statyczna biblioteka libgutenprint
-Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com libgutenprint
+Summary(pl.UTF-8):   Statyczna biblioteka libgutenprint
+Summary(pt_BR.UTF-8):   Bibliotecas estÃ¡ticas para desenvolvimento com libgutenprint
 Group:		Development/Libraries
 Requires:	libgutenprint-devel = %{version}-%{release}
 #Obsoletes:	gimp-print-static
@@ -121,16 +121,16 @@ Obsoletes:	libgimprint-static
 %description -n libgutenprint-static
 libgutenprint static library.
 
-%description -n libgutenprint-static -l pl
+%description -n libgutenprint-static -l pl.UTF-8
 Biblioteka statyczna libgutenprint.
 
-%description -n libgutenprint-static -l pt_BR
-Bibliotecas estáticas para desenvolvimento com libgutenprint.
+%description -n libgutenprint-static -l pt_BR.UTF-8
+Bibliotecas estÃ¡ticas para desenvolvimento com libgutenprint.
 
 %package -n libgutenprintui
 Summary:	libgutenprintui library
-Summary(pl):	Biblioteka libgutenprintui
-Summary(pt_BR):	Bibliotecas dinâmicas para impressão de alta qualidade
+Summary(pl.UTF-8):   Biblioteka libgutenprintui
+Summary(pt_BR.UTF-8):   Bibliotecas dinÃ¢micas para impressÃ£o de alta qualidade
 Group:		Libraries
 Requires:	libgutenprint = %{version}-%{release}
 Obsoletes:	libgimprintui
@@ -138,13 +138,13 @@ Obsoletes:	libgimprintui
 %description -n libgutenprintui
 libgutenprintui library.
 
-%description -n libgutenprintui -l pl
+%description -n libgutenprintui -l pl.UTF-8
 Biblioteka libgutenprintui.
 
 %package -n libgutenprintui-devel
 Summary:	Header files for libgutenprintui library
-Summary(pl):	Pliki nag³ówkowe biblioteki libgutenprintui
-Summary(pt_BR):	Cabeçalhos e arquivos de desenvolvimento para o libgutenprintui
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki libgutenprintui
+Summary(pt_BR.UTF-8):   CabeÃ§alhos e arquivos de desenvolvimento para o libgutenprintui
 Group:		Development/Libraries
 Requires:	gtk+2-devel >= 2.0.0
 Requires:	libgutenprint-devel = %{version}-%{release}
@@ -154,17 +154,17 @@ Obsoletes:	libgimprintui-devel
 %description -n libgutenprintui-devel
 Header files for libgutenprintui lirbary.
 
-%description -n libgutenprintui-devel -l pl
-Pliki nag³ówkowe biblioteki libgutenprint.
+%description -n libgutenprintui-devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki libgutenprint.
 
-%description -n libgutenprintui-devel -l pt_BR
-Este são os arquivos de desenvolvimento para compilar programas com a
+%description -n libgutenprintui-devel -l pt_BR.UTF-8
+Este sÃ£o os arquivos de desenvolvimento para compilar programas com a
 biblioteca libgutenprintui.
 
 %package -n libgutenprintui-static
 Summary:	libgutenprintui static library
-Summary(pl):	Statyczna biblioteka libgutenprintui
-Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com libgutenprintui
+Summary(pl.UTF-8):   Statyczna biblioteka libgutenprintui
+Summary(pt_BR.UTF-8):   Bibliotecas estÃ¡ticas para desenvolvimento com libgutenprintui
 Group:		Development/Libraries
 Requires:	libgutenprintui-devel = %{version}-%{release}
 Obsoletes:	libgimprintui-static
@@ -172,16 +172,16 @@ Obsoletes:	libgimprintui-static
 %description -n libgutenprintui-static
 libgutenprintui static library.
 
-%description -n libgutenprintui-static -l pl
+%description -n libgutenprintui-static -l pl.UTF-8
 Biblioteka statyczna libgutenprintui.
 
-%description -n libgutenprintui-static -l pt_BR
-Bibliotecas estáticas para desenvolvimento com libgutenprint.
+%description -n libgutenprintui-static -l pt_BR.UTF-8
+Bibliotecas estÃ¡ticas para desenvolvimento com libgutenprint.
 
 %package -n escputil
 Summary:	Tool for Epson ink printers
-Summary(pl):	Narzêdzie do drukarek atramentowych Epson
-Summary(pt_BR):	Ferramenta de manutenção de impressoras ESPSON Stylus (R)
+Summary(pl.UTF-8):   NarzÄ™dzie do drukarek atramentowych Epson
+Summary(pt_BR.UTF-8):   Ferramenta de manutenÃ§Ã£o de impressoras ESPSON Stylus (R)
 Group:		Applications/Printing
 Requires:	libgutenprint = %{version}-%{release}
 
@@ -195,31 +195,31 @@ can be used to perform the following tests:
 - Ink level
 - Printer Identify
 
-%description -n escputil -l pl
-Dzia³aj±ce z linii poleceñ narzêdzie dla drukarek atramentowych Epson.
-Mo¿e byæ u¿yte do:
-- oczyszczenia g³owicy
+%description -n escputil -l pl.UTF-8
+DziaÅ‚ajÄ…ce z linii poleceÅ„ narzÄ™dzie dla drukarek atramentowych Epson.
+MoÅ¼e byÄ‡ uÅ¼yte do:
+- oczyszczenia gÅ‚owicy
 - testu dysz
-- wyrównania g³owicy
+- wyrÃ³wnania gÅ‚owicy
 - odczytu stanu drukarki
-- odczytu ilo¶ci tuszu
+- odczytu iloÅ›ci tuszu
 - identyfikacji drukarki.
 
-%description -n escputil -l pt_BR
-Ferramenta de manutenção de impressoras ESPSON Stylus (R). Esta
-ferramenta de linha de comando é usada para executar as seguintes
+%description -n escputil -l pt_BR.UTF-8
+Ferramenta de manutenÃ§Ã£o de impressoras ESPSON Stylus (R). Esta
+ferramenta de linha de comando Ã© usada para executar as seguintes
 tarefas:
-- Limpeza de cabeçote
-- Checagem de Qualidade de impressão
-- Alinhamento de cabeçote
+- Limpeza de cabeÃ§ote
+- Checagem de Qualidade de impressÃ£o
+- Alinhamento de cabeÃ§ote
 - Estado da Impressora
-- Nível de tinta
-- Identificação da Impressora
+- NÃ­vel de tinta
+- IdentificaÃ§Ã£o da Impressora
 
 %package cups
 Summary:	Gutenprint as CUPS plugin
-Summary(pl):	Gutenprint jako wtyczka do CUPS
-Summary(pt_BR):	Entradas ppd para serem usadas com o cups
+Summary(pl.UTF-8):   Gutenprint jako wtyczka do CUPS
+Summary(pt_BR.UTF-8):   Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
 Requires:	cups >= 1.1.15
 Requires:	libgutenprint = %{version}-%{release}
@@ -228,27 +228,27 @@ Obsoletes:	gimp-print-cups
 %description cups
 Gutenprint as CUPS plugin.
 
-%description cups -l pl
+%description cups -l pl.UTF-8
 Wtyczka Gutenprint dla CUPS.
 
-%description cups -l pt_BR
-Este pacote contém os arquivos ppd para se usar o driver Gutenprint
-com o sistema de impressão cups.
+%description cups -l pt_BR.UTF-8
+Este pacote contÃ©m os arquivos ppd para se usar o driver Gutenprint
+com o sistema de impressÃ£o cups.
 
 %package samples
 Summary:	Gutenprint samples
-Summary(pl):	Przyk³ady do Gutenprinta
+Summary(pl.UTF-8):   PrzykÅ‚ady do Gutenprinta
 Group:		Applications/Printing
 
 %description samples
 Gutenprint samples.
 
-%description samples -l pl
-Przyk³ady dla Gutenprinta.
+%description samples -l pl.UTF-8
+PrzykÅ‚ady dla Gutenprinta.
 
 %package ijs
 Summary:	gutenprint IJS driver for GhostScript
-Summary(pl):	Sterownik IJS gutenprint dla GhostScripta
+Summary(pl.UTF-8):   Sterownik IJS gutenprint dla GhostScripta
 Group:		Applications/Printing
 Requires:	libgutenprint = %{version}-%{release}
 Obsoletes:	gimp-print-ijs
@@ -256,12 +256,12 @@ Obsoletes:	gimp-print-ijs
 %description ijs
 gutenprint IJS driver for GhostScript.
 
-%description ijs -l pl
+%description ijs -l pl.UTF-8
 Sterownik IJS gutenprint dla GhostScripta.
 
 %package -n foomatic-db-gutenprint
 Summary:	foomatic data for gutenprint IJS driver
-Summary(pl):	Dane foomatic dla sterownika IJS gutenprint
+Summary(pl.UTF-8):   Dane foomatic dla sterownika IJS gutenprint
 Group:		Applications/Printing
 Requires:	%{name}-ijs = %{version}-%{release}
 Requires:	foomatic-db-engine >= 2.9.1
@@ -270,12 +270,12 @@ Obsoletes:	foomatic-db-gimp-print
 %description -n foomatic-db-gutenprint
 foomatic data for gimp-print IJS driver.
 
-%description -n foomatic-db-gutenprint -l pl
+%description -n foomatic-db-gutenprint -l pl.UTF-8
 Dane foomatic dla sterownika IJS gutenprint.
 
 %package -n gimp-plugin-print
 Summary:	print plugin for Gimp
-Summary(pl):	Wtyczka print dla Gimpa
+Summary(pl.UTF-8):   Wtyczka print dla Gimpa
 Group:		Applications/Print
 Requires:	libgutenprint = %{version}-%{release}
 Requires:	gimp >= 1:2.0.0
@@ -284,7 +284,7 @@ Obsoletes:	gimp-print
 %description -n gimp-plugin-print
 print plugin for Gimp.
 
-%description -n gimp-plugin-print -l pl
+%description -n gimp-plugin-print -l pl.UTF-8
 Wtyczka print dla Gimpa.
 
 %prep
