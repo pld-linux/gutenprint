@@ -341,6 +341,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}
 	gimp_plug_indir=%{gimpplugindir}
 %endif
 
+rm -rf doc-installed
 mv -f $RPM_BUILD_ROOT%{_datadir}/gutenprint/doc doc-installed
 mv -f $RPM_BUILD_ROOT%{_datadir}/gutenprint/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
