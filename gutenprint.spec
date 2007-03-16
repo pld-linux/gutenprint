@@ -24,6 +24,7 @@ Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-usb.patch
 Patch1:		%{name}-opt.patch
 Patch2:		%{name}-static.patch
+Patch3:		%{name}-no_useless_pcfile.patch
 URL:		http://gutenprint.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -275,10 +276,9 @@ foomatic data for gimp-print IJS driver.
 Dane foomatic dla sterownika IJS gutenprint.
 
 %package -n gimp-plugin-print
-######		Unknown group!
 Summary:	print plugin for Gimp
 Summary(pl.UTF-8):	Wtyczka print dla Gimpa
-Group:		Applications/Print
+Group:		Applications/Printing
 Requires:	gimp >= 1:2.0.0
 Requires:	libgutenprint = %{version}-%{release}
 Obsoletes:	gimp-print
@@ -294,6 +294,7 @@ Wtyczka print dla Gimpa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 echo 'AC_DEFUN([AM_PATH_GTK],[$3])' > m4/gtk.m4
 %{__sed} -i 's,AM_PATH_GLIB,,' m4/stp_gimp.m4
@@ -314,6 +315,7 @@ rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
 	--with%{!?with_cups:out}-cups \
 	--without-gimp \
 	--with%{!?with_gimp:out}-gimp2 \
+	--with-gimp2-as-gutenprint \
 	--with%{!?with_ijs:out}-ijs \
 	--with%{!?with_foomatic:out}-foomatic \
 	--with%{!?with_foomatic:out}-foomatic3 \
@@ -454,5 +456,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with gimp}
 %files -n gimp-plugin-print
 %defattr(644,root,root,755)
-%attr(755,root,root) %{gimpplugindir}/print
+%attr(755,root,root) %{gimpplugindir}/gutenprint
 %endif
