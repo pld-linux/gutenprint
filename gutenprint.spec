@@ -275,11 +275,12 @@ foomatic data for gimp-print IJS driver.
 Dane foomatic dla sterownika IJS gutenprint.
 
 %package -n gimp-plugin-print
+######		Unknown group!
 Summary:	print plugin for Gimp
 Summary(pl.UTF-8):	Wtyczka print dla Gimpa
 Group:		Applications/Print
-Requires:	libgutenprint = %{version}-%{release}
 Requires:	gimp >= 1:2.0.0
+Requires:	libgutenprint = %{version}-%{release}
 Obsoletes:	gimp-print
 
 %description -n gimp-plugin-print
@@ -289,7 +290,7 @@ print plugin for Gimp.
 Wtyczka print dla Gimpa.
 
 %prep
-%setup -q 
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
