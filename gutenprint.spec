@@ -1,3 +1,8 @@
+# TODO
+# 	installed but upackaged files:
+#		%attr(755,root,root) %{_bindir}/testpattern
+#		%{_datadir}/foomatic/kitload.log
+# - port info_and_pdf_only.patch and install documentation in correct place.
 #
 # Conditional build:
 %bcond_without	cups		# don't build CUPS plugin
@@ -5,10 +10,6 @@
 %bcond_without	ijs		# don't build IJS server for Ghostscript
 %bcond_without	foomatic	# don't generate foomatic data
 %bcond_without	static_libs	# don't build static library
-#
-# TODO:
-# - port info_and_pdf_only.patch and install documentation in correct place.
-# - think about not including PPDs in package and allow generation by cups-genppd
 #
 %include	/usr/lib/rpm/macros.perl
 Summary:	Collection of high-quality printer drivers
