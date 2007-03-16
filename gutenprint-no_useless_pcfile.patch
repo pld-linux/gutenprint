@@ -1,0 +1,12 @@
+--- gutenprint-5.0.0.99.1/src/gutenprintui/Makefile.am.orig	2007-03-16 02:23:56.000000000 +0000
++++ gutenprint-5.0.0.99.1/src/gutenprintui/Makefile.am	2007-03-16 02:24:17.000000000 +0000
+@@ -62,7 +62,9 @@
+ 
+ ## Data
+ 
++if BUILD_LIBGUTENPRINTUI
+ pkgconfigdata_DATA = gutenprintui.pc
++endif
+ 
+ 
+ ## Rules
