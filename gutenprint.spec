@@ -421,10 +421,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/cups/command.types
 %attr(755,root,root) %{_bindir}/cups-*
 %attr(755,root,root) %{_sbindir}/cups-*
+%attr(755,root,root) %{_libdir}/cups/driver/gutenprint.5.0
 %{_datadir}/cups/calibrate.ppm
-%dir %{_datadir}/cups/model/gutenprint
-%dir %{_datadir}/cups/model/gutenprint/*
-%{_datadir}/cups/model/gutenprint/*/C
+#dir %{_datadir}/cups/model/gutenprint
+#dir %{_datadir}/cups/model/gutenprint/*
+#{_datadir}/cups/model/gutenprint/*/C
 %attr(755,root,root) %{cupslibdir}/backend/*
 %attr(755,root,root) %{cupslibdir}/filter/*
 %{_mandir}/man8/*cups*.8*
