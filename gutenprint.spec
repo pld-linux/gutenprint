@@ -33,7 +33,7 @@ BuildRequires:	docbook-utils
 BuildRequires:	gettext-autopoint
 %{?with_ijs:BuildRequires:	ghostscript-ijs-devel}
 %{?with_gimp:BuildRequires:	gimp-devel >= 1:2.0.0}
-BuildRequires:	gtk+2-devel >= 2.0.0
+BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 1:1.4.2-9
@@ -273,13 +273,16 @@ foomatic data for gimp-print IJS driver.
 %description -n foomatic-db-gutenprint -l pl.UTF-8
 Dane foomatic dla sterownika IJS gutenprint.
 
-%package -n gimp-plugin-print
+%package -n gimp-plugin-gutenprint
 Summary:	print plugin for Gimp
 Summary(pl.UTF-8):	Wtyczka print dla Gimpa
 Group:		Applications/Printing
 Requires:	gimp >= 1:2.2.0
 Requires:	libgutenprint = %{version}-%{release}
-Obsoletes:	gimp-print
+Obsoletes:	gimp-plugin-print
+# obsolete old plugin which used to come with gimp-print/gutenprint,
+# not the one that comes with gimp
+Obsoletes:	gimp-print < 1:2.0
 
 %description -n gimp-plugin-print
 print plugin for Gimp.
@@ -441,7 +444,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %if %{with gimp}
-%files -n gimp-plugin-print
+%files -n gimp-plugin-gutenprint
 %defattr(644,root,root,755)
 %attr(755,root,root) %{gimpplugindir}/gutenprint
 %endif
