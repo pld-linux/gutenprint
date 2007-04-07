@@ -15,16 +15,14 @@
 Summary:	Collection of high-quality printer drivers
 Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 Name:		gutenprint
-Version:	5.0.0.99.1
-Release:	0.9
+Version:	5.1.0
+Release:	0.1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-# Source0-md5:	c9f9b3e1260aa003f6fc357c4857c8f9
-Patch0:		%{name}-usb.patch
-Patch1:		%{name}-opt.patch
-Patch2:		%{name}-static.patch
-Patch3:		%{name}-no_useless_pcfile.patch
+# Source0-md5:	a31f0519e946fc202c4b9dc5cfec4391
+Patch0:		%{name}-opt.patch
+Patch1:		%{name}-static.patch
 URL:		http://gutenprint.sourceforge.net/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -279,7 +277,7 @@ Dane foomatic dla sterownika IJS gutenprint.
 Summary:	print plugin for Gimp
 Summary(pl.UTF-8):	Wtyczka print dla Gimpa
 Group:		Applications/Printing
-Requires:	gimp >= 1:2.0.0
+Requires:	gimp >= 1:2.2.0
 Requires:	libgutenprint = %{version}-%{release}
 Obsoletes:	gimp-print
 
@@ -293,15 +291,9 @@ Wtyczka print dla Gimpa.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-
-echo 'AC_DEFUN([AM_PATH_GTK],[$3])' > m4/gtk.m4
-%{__sed} -i 's,AM_PATH_GLIB,,' m4/stp_gimp.m4
 
 %build
 rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
-%{?with_gimp:rm -f m4extra/gimp.m4}
 %{__libtoolize}
 %{__autopoint}
 %{__aclocal} -I m4 -I m4extra
@@ -313,7 +305,6 @@ rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
 	%{!?with_static_libs:--disable-static} \
 	%{!?with_cups:--disable-cups-ppds} \
 	--with%{!?with_cups:out}-cups \
-	--without-gimp \
 	--with%{!?with_gimp:out}-gimp2 \
 	--with-gimp2-as-gutenprint \
 	--with%{!?with_ijs:out}-ijs \
@@ -321,7 +312,6 @@ rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
 	--with%{!?with_foomatic:out}-foomatic3 \
 	--with-modules=dlopen \
 	--enable-escputil \
-	--disable-libgutenprintui \
 	--disable-rpath \
 	--disable-static-genppd \
 	--disable-translated-cups-ppds \
@@ -425,13 +415,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/cups/command.types
 %attr(755,root,root) %{_bindir}/cups-*
 %attr(755,root,root) %{_sbindir}/cups-*
-%attr(755,root,root) %{_libdir}/cups/driver/gutenprint.5.0
+%attr(755,root,root) %{cupslibdir}/driver/gutenprint.5.1
+%attr(755,root,root) %{cupslibdir}/filter/commandto*
+%attr(755,root,root) %{cupslibdir}/filter/rastertogutenprint.5.1
 %{_datadir}/cups/calibrate.ppm
-#dir %{_datadir}/cups/model/gutenprint
-#dir %{_datadir}/cups/model/gutenprint/*
-#{_datadir}/cups/model/gutenprint/*/C
-%attr(755,root,root) %{cupslibdir}/backend/*
-%attr(755,root,root) %{cupslibdir}/filter/*
 %{_mandir}/man8/*cups*.8*
 %endif
 
