@@ -1,7 +1,6 @@
 # TODO
 # 	installed but upackaged files:
 #		%attr(755,root,root) %{_bindir}/testpattern
-#		%{_datadir}/foomatic/kitload.log
 # - port info_and_pdf_only.patch and install documentation in correct place.
 #
 # Conditional build:
@@ -15,12 +14,12 @@
 Summary:	Collection of high-quality printer drivers
 Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 Name:		gutenprint
-Version:	5.1.0
+Version:	5.1.1
 Release:	0.1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-# Source0-md5:	a31f0519e946fc202c4b9dc5cfec4391
+# Source0-md5:	55bdd7b3672ce4e1704593cbb569be54
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
 URL:		http://gutenprint.sourceforge.net/
