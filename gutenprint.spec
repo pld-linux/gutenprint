@@ -284,10 +284,10 @@ Obsoletes:	gimp-plugin-print
 # not the one that comes with gimp
 Obsoletes:	gimp-print < 1:2.0
 
-%description -n gimp-plugin-print
+%description -n gimp-plugin-gutenprint
 print plugin for Gimp.
 
-%description -n gimp-plugin-print -l pl.UTF-8
+%description -n gimp-plugin-gutenprint -l pl.UTF-8
 Wtyczka print dla Gimpa.
 
 %prep
