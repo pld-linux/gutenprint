@@ -364,7 +364,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc-installed/{gutenprint.pdf,gutenprint-users-manual.pdf}
 %doc doc/FAQ.html AUTHORS ChangeLog NEWS README
-%attr(755,root,root) %{_libdir}/libgutenprint.so.*.*
+%attr(755,root,root) %{_libdir}/libgutenprint.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgutenprint.so.2
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/%{version}*
 %dir %{_libdir}/%{name}/%{version}*/modules
@@ -390,7 +391,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgutenprintui
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgutenprintui2.so.*.*
+%attr(755,root,root) %{_libdir}/libgutenprintui2.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgutenprintui2.so.1
 
 %files -n libgutenprintui-devel
 %defattr(644,root,root,755)
