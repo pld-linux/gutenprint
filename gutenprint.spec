@@ -77,8 +77,7 @@ Summary:	libgutenprint library
 Summary(pl.UTF-8):	Biblioteka libgutenprint
 Summary(pt_BR.UTF-8):	Bibliotecas dinâmicas para impressão de alta qualidade
 Group:		Libraries
-# uncomment when it becomes stable
-#Obsoletes:	gimp-print-lib
+Obsoletes:	gimp-print-lib
 Obsoletes:	libgimprint
 
 %description -n libgutenprint
@@ -93,7 +92,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgutenprint
 Summary(pt_BR.UTF-8):	Cabeçalhos e arquivos de desenvolvimento para o libgutenprint
 Group:		Development/Libraries
 Requires:	libgutenprint = %{version}-%{release}
-#Obsoletes:	gimp-print-devel
+Obsoletes:	gimp-print-devel
 Obsoletes:	libgimpprint-devel
 
 %description -n libgutenprint-devel
@@ -112,7 +111,7 @@ Summary(pl.UTF-8):	Statyczna biblioteka libgutenprint
 Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com libgutenprint
 Group:		Development/Libraries
 Requires:	libgutenprint-devel = %{version}-%{release}
-#Obsoletes:	gimp-print-static
+Obsoletes:	gimp-print-static
 Obsoletes:	libgimprint-static
 
 %description -n libgutenprint-static
