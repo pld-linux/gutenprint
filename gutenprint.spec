@@ -20,7 +20,7 @@ Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
 # Source0-md5:	9a6c0e382d570b6449d71bce567c7590
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
-URL:		http://gutenprint.sourceforge.net/
+URL:		http://sourceforge.net/projects/gimp-print/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
 %{?with_cups:BuildRequires:	cups-devel >= 1.1.15}
