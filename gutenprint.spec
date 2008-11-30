@@ -11,13 +11,14 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Collection of high-quality printer drivers
 Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
+%define	majorver	5.2
 Name:		gutenprint
-Version:	5.1.7
-Release:	2
+Version:	%{majorver}.2
+Release:	1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-# Source0-md5:	9a6c0e382d570b6449d71bce567c7590
+# Source0-md5:	ffd3fefd28638dfe49caad04ef6d9f50
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
 URL:		http://sourceforge.net/projects/gimp-print/
@@ -344,7 +345,7 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
 echo '.so cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
 %endif
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/%{version}*/modules/*.{a,la}
+rm $RPM_BUILD_ROOT%{_libdir}/%{name}/%{majorver}/modules/*.{a,la}
 
 %find_lang %{name}
 
@@ -364,11 +365,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgutenprint.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgutenprint.so.2
 %dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/%{version}*
-%dir %{_libdir}/%{name}/%{version}*/modules
-%attr(755,root,root) %{_libdir}/%{name}/%{version}*/modules/*.so
+%dir %{_libdir}/%{name}/%{majorver}*
+%dir %{_libdir}/%{name}/%{majorver}*/modules
+%attr(755,root,root) %{_libdir}/%{name}/%{majorver}*/modules/*.so
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/%{version}*
+%{_datadir}/%{name}/%{majorver}*
 #%{_mandir}/man7/gutenprint-*.7*
 
 %files -n libgutenprint-devel
@@ -417,9 +418,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/cups/command.types
 %attr(755,root,root) %{_bindir}/cups-*
 %attr(755,root,root) %{_sbindir}/cups-*
-%attr(755,root,root) %{cupslibdir}/driver/gutenprint.5.1
+%attr(755,root,root) %{cupslibdir}/driver/gutenprint.%{majorver}
 %attr(755,root,root) %{cupslibdir}/filter/commandto*
-%attr(755,root,root) %{cupslibdir}/filter/rastertogutenprint.5.1
+%attr(755,root,root) %{cupslibdir}/filter/rastertogutenprint.%{majorver}
 %{_datadir}/cups/calibrate.ppm
 %{_mandir}/man8/*cups*.8*
 %endif
