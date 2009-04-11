@@ -345,7 +345,7 @@ rm -f $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
 echo '.so cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
 %endif
 
-rm $RPM_BUILD_ROOT%{_libdir}/%{name}/%{majorver}/modules/*.{a,la}
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/%{majorver}/modules/*.{a,la}
 
 %find_lang %{name}
 
