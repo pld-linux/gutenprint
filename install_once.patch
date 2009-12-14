@@ -1,0 +1,10 @@
+--- gutenprint-5.2.3/include/gutenprint/Makefile.am.orig	2009-11-24 19:45:19.195859359 +0100
++++ gutenprint-5.2.3/include/gutenprint/Makefile.am	2009-11-24 19:45:31.695000322 +0100
+@@ -36,7 +36,6 @@
+ 	curve-cache.h \
+ 	curve.h \
+ 	dither.h \
+-	sequence.h \
+ 	image.h \
+ 	list.h \
+ 	module.h \
