@@ -13,12 +13,12 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 %define	majorver	5.2
 Name:		gutenprint
-Version:	%{majorver}.6
+Version:	%{majorver}.7
 Release:	1
 License:	GPL
 Group:		Applications/Printing
-Source0:	http://dl.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-# Source0-md5:	1f0d0cbef6c089f4f095e21869fa70db
+Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
+# Source0-md5:	b19029972bf28f6efd693270daf8f5de
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
 Patch2:		install_once.patch
