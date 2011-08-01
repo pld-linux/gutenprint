@@ -22,6 +22,7 @@ Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
 Patch2:		install_once.patch
+Patch3:		missing_headers.patch
 URL:		http://sourceforge.net/projects/gimp-print/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake
@@ -293,6 +294,7 @@ Wtyczka print dla Gimpa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
