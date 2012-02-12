@@ -1,0 +1,3 @@
+- pdf i ps documentation removed (to hard to talk with kloczek) (nice formated documentation with ilustrations now missing)
+- html documentation moved do -lib subpackage
+- info moved to -devel subpackage
