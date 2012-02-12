@@ -1,0 +1,7 @@
+- updated to 4.3.8
+- added gettext.patch to allow using autopoint
+- enable building foomatic data
+- renamed gimp-print-lib to libgimpprint and separate UI library to libgimpprintui
+- disable building translated PPDs
+- enable dlopened modules
+- added --with static and --without foomatic bconds
