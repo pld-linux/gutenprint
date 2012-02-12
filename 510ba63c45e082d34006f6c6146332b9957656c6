@@ -1,0 +1,4 @@
+
+- bugfixes, upgrade to 4.2.1-pre4 (version with ijs driver)
+- fix %%doc section
+- STBR
