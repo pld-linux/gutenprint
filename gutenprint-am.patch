@@ -1,0 +1,30 @@
+--- gutenprint-5.2.9/configure.ac.orig	2013-03-24 09:45:04.996254643 +0100
++++ gutenprint-5.2.9/configure.ac	2013-03-24 09:46:44.106250484 +0100
+@@ -140,7 +140,7 @@
+ GUTENPRINTUI2_LIBDEPS="${GUTENPRINTUI2_LIBDEPS} \$(GUTENPRINT_LIBS)"
+ 
+ dnl Specify a configuration file.
+-AM_CONFIG_HEADER([config.h])
++AC_CONFIG_HEADERS([config.h])
+ 
+ dnl Available languages (translations)
+ ALL_LINGUAS="cs da de el en_GB es fi fr gl hu it ja nb nl pl pt ru sk sl sv uk zh_CN zh_TW"
+@@ -475,7 +475,6 @@
+ AC_ISC_POSIX
+ AC_PROG_AWK
+ AC_PROG_CC
+-AM_PROG_CC_STDC
+ AM_PROG_CC_C_O
+ AC_PROG_INSTALL
+ AC_PROG_LN_S
+--- gutenprint-5.2.9/m4extra/glib.m4.orig	2006-01-29 12:53:10.000000000 +0100
++++ gutenprint-5.2.9/m4extra/glib.m4	2013-03-24 10:01:11.136214098 +0100
+@@ -5,7 +5,7 @@
+ dnl Test for GLIB, and define GLIB_CFLAGS and GLIB_LIBS, if "gmodule" or 
+ dnl gthread is specified in MODULES, pass to glib-config
+ dnl
+-AC_DEFUN(AM_PATH_GLIB,
++AC_DEFUN([AM_PATH_GLIB],
+ [dnl 
+ dnl Get the cflags and libraries from the glib-config script
+ dnl

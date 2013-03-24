@@ -13,31 +13,33 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 %define	majorver	5.2
 Name:		gutenprint
-Version:	%{majorver}.7
-Release:	5
+Version:	%{majorver}.9
+Release:	1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-# Source0-md5:	b19029972bf28f6efd693270daf8f5de
+# Source0-md5:	aefbec27b96dd404d9ac9811e17d58ce
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
-Patch2:		missing_headers.patch
+Patch2:		%{name}-am.patch
+Patch3:		%{name}-link.patch
 URL:		http://sourceforge.net/projects/gimp-print/
 BuildRequires:	autoconf >= 2.53
-BuildRequires:	automake
-%{?with_cups:BuildRequires:	cups-devel >= 1.1.15}
+BuildRequires:	automake >= 1:1.9
+%{?with_cups:BuildRequires:	cups-devel >= 1.2}
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
-%{?with_foomatic:BuildRequires:	foomatic-db-engine >= 2.9.1}
-BuildRequires:	gettext-autopoint
+%{?with_foomatic:BuildRequires:	foomatic-db-engine >= 3}
+BuildRequires:	gettext-devel >= 0.16
 %{?with_ijs:BuildRequires:	ghostscript-ijs-devel}
-%{?with_gimp:BuildRequires:	gimp-devel >= 1:2.0.0}
+%{?with_gimp:BuildRequires:	gimp-devel >= 1:2.2.0}
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	openssl-devel
 BuildRequires:	pkgconfig
+BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov >= 3.0.3-16
 BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
@@ -219,7 +221,7 @@ Summary:	Gutenprint as CUPS plugin
 Summary(pl.UTF-8):	Gutenprint jako wtyczka do CUPS
 Summary(pt_BR.UTF-8):	Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
-Requires:	cups >= 1.1.15
+Requires:	cups >= 1.2
 Requires:	libgutenprint = %{version}-%{release}
 Obsoletes:	gimp-print-cups
 
@@ -262,7 +264,7 @@ Summary:	foomatic data for gutenprint IJS driver
 Summary(pl.UTF-8):	Dane foomatic dla sterownika IJS gutenprint
 Group:		Applications/Printing
 Requires:	%{name}-ijs = %{version}-%{release}
-Requires:	foomatic-db-engine >= 2.9.1
+Requires:	foomatic-db-engine >= 3
 Obsoletes:	foomatic-db-gimp-print
 
 %description -n foomatic-db-gutenprint
@@ -293,15 +295,14 @@ Wtyczka print dla Gimpa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
-rm -f m4extra/{libtool.m4,gettext.m4,lcmessage.m4,progtest.m4}
+%{__gettextize}
 %{__libtoolize}
-%{__autopoint}
 %{__aclocal} -I m4 -I m4extra
-%{__automake}
 %{__autoconf}
-
+%{__automake}
 %configure \
 	%{?debug:--enable-debug} \
 	%{!?with_static_libs:--disable-static} \
@@ -343,11 +344,12 @@ mv -f $RPM_BUILD_ROOT%{_datadir}/gutenprint/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %if %{with cups}
-rm -f $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
-echo '.so cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
+echo '.so man8/cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
 %endif
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/%{majorver}/modules/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/%{majorver}/modules/*.{a,la}
+# locales source
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/locale/*/gutenprint_*.po
 
 %find_lang %{name}
 
@@ -362,16 +364,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n libgutenprint -f %{name}.lang
 %defattr(644,root,root,755)
-%doc doc-installed/{gutenprint.pdf,gutenprint-users-manual.pdf}
-%doc doc/FAQ.html AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS README doc/FAQ.html doc-installed/{gutenprint.pdf,gutenprint-users-manual.pdf}
 %attr(755,root,root) %{_libdir}/libgutenprint.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgutenprint.so.2
 %dir %{_libdir}/%{name}
-%dir %{_libdir}/%{name}/%{majorver}*
-%dir %{_libdir}/%{name}/%{majorver}*/modules
-%attr(755,root,root) %{_libdir}/%{name}/%{majorver}*/modules/*.so
+%dir %{_libdir}/%{name}/%{majorver}
+%dir %{_libdir}/%{name}/%{majorver}/modules
+%attr(755,root,root) %{_libdir}/%{name}/%{majorver}/modules/color-traditional.so
+%attr(755,root,root) %{_libdir}/%{name}/%{majorver}/modules/print-*.so
 %dir %{_datadir}/%{name}
-%{_datadir}/%{name}/%{majorver}*
+%{_datadir}/%{name}/%{majorver}
 #%{_mandir}/man7/gutenprint-*.7*
 
 %files -n libgutenprint-devel
@@ -418,13 +420,18 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc src/cups/{README,command.txt,commands}
 %{_sysconfdir}/cups/command.types
-%attr(755,root,root) %{_bindir}/cups-*
-%attr(755,root,root) %{_sbindir}/cups-*
+%attr(755,root,root) %{_bindir}/cups-calibrate
+%attr(755,root,root) %{_sbindir}/cups-genppd.%{majorver}
+%attr(755,root,root) %{_sbindir}/cups-genppdupdate
 %attr(755,root,root) %{cupslibdir}/driver/gutenprint.%{majorver}
-%attr(755,root,root) %{cupslibdir}/filter/commandto*
+%attr(755,root,root) %{cupslibdir}/filter/commandtocanon
+%attr(755,root,root) %{cupslibdir}/filter/commandtoepson
 %attr(755,root,root) %{cupslibdir}/filter/rastertogutenprint.%{majorver}
 %{_datadir}/cups/calibrate.ppm
-%{_mandir}/man8/*cups*.8*
+%{_mandir}/man8/cups-calibrate.8*
+%{_mandir}/man8/cups-genppd.8*
+%{_mandir}/man8/cups-genppdupdate.8*
+%{_mandir}/man8/update-cups-genppd.8*
 %endif
 
 %files samples
@@ -434,15 +441,17 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with ijs}
 %files ijs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/ijsgutenprint*
+%attr(755,root,root) %{_bindir}/ijsgutenprint.%{majorver}
 %{_mandir}/man1/ijsgutenprint.1*
 %endif
 
 %if %{with foomatic}
 %files -n foomatic-db-gutenprint
 %defattr(644,root,root,755)
-%{_datadir}/foomatic/db/source/driver/*
-%{_datadir}/foomatic/db/source/opt/*
+%{_datadir}/foomatic/db/source/driver/gutenprint-ijs.%{majorver}.xml
+%{_datadir}/foomatic/db/source/driver/gutenprint-ijs-simplified.%{majorver}.xml
+%{_datadir}/foomatic/db/source/opt/gutenprint-ijs.%{majorver}-*.xml
+%{_datadir}/foomatic/db/source/opt/gutenprint-ijs-simplified.%{majorver}-*.xml
 %endif
 
 %if %{with gimp}
