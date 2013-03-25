@@ -343,10 +343,6 @@ mv -f $RPM_BUILD_ROOT%{_datadir}/gutenprint/doc doc-installed
 mv -f $RPM_BUILD_ROOT%{_datadir}/gutenprint/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%if %{with cups}
-echo '.so man8/cups-genppdconfig.8' > $RPM_BUILD_ROOT%{_mandir}/man8/update-cups-genppd.8
-%endif
-
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/%{majorver}/modules/*.{a,la}
 # locales source
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/locale/*/gutenprint_*.po
@@ -431,7 +427,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/cups-calibrate.8*
 %{_mandir}/man8/cups-genppd.8*
 %{_mandir}/man8/cups-genppdupdate.8*
-%{_mandir}/man8/update-cups-genppd.8*
 %endif
 
 %files samples
