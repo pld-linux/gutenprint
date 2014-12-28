@@ -30,7 +30,7 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
 %{?with_foomatic:BuildRequires:	foomatic-db-engine >= 3}
-BuildRequires:	gettext-devel >= 0.16
+BuildRequires:	gettext-tools >= 0.16
 %{?with_ijs:BuildRequires:	ghostscript-ijs-devel}
 %{?with_gimp:BuildRequires:	gimp-devel >= 1:2.2.0}
 BuildRequires:	gtk+2-devel >= 1:2.0.0
