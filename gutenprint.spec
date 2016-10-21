@@ -4,7 +4,7 @@
 # Conditional build:
 %bcond_without	cups		# don't build CUPS plugin
 %bcond_without	gimp		# build GIMP plugin subpackage
-%bcond_without	ijs		# don't build IJS server for Ghostscript
+%bcond_with	ijs		# don't build IJS server for Ghostscript
 %bcond_without	foomatic	# don't generate foomatic data
 %bcond_without	static_libs	# don't build static library
 #
@@ -13,16 +13,15 @@ Summary:	Collection of high-quality printer drivers
 Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 %define	majorver	5.2
 Name:		gutenprint
-Version:	%{majorver}.9
-Release:	4
+Version:	%{majorver}.11
+Release:	1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-# Source0-md5:	aefbec27b96dd404d9ac9811e17d58ce
+# Source0-md5:	fa6083535b7235fe531cd57e7345a81f
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
 Patch2:		%{name}-am.patch
-Patch3:		%{name}-link.patch
 URL:		http://sourceforge.net/projects/gimp-print/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -295,7 +294,6 @@ Wtyczka print dla Gimpa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 %{__gettextize}
@@ -423,7 +421,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{cupslibdir}/filter/commandtocanon
 %attr(755,root,root) %{cupslibdir}/filter/commandtoepson
 %attr(755,root,root) %{cupslibdir}/filter/rastertogutenprint.%{majorver}
+%attr(755,root,root) %{cupslibdir}/backend/gutenprint52+usb
 %{_datadir}/cups/calibrate.ppm
+%dir %{_datadir}/cups/usb
+%{_datadir}/cups/usb/net.sf.gimp-print.usb-quirks
 %{_mandir}/man8/cups-calibrate.8*
 %{_mandir}/man8/cups-genppd.8*
 %{_mandir}/man8/cups-genppdupdate.8*
