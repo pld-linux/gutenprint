@@ -4,7 +4,7 @@
 # Conditional build:
 %bcond_without	cups		# don't build CUPS plugin
 %bcond_without	gimp		# build GIMP plugin subpackage
-%bcond_with	ijs		# don't build IJS server for Ghostscript
+%bcond_without	ijs		# don't build IJS server for Ghostscript
 %bcond_without	foomatic	# don't generate foomatic data
 %bcond_without	static_libs	# don't build static library
 #
@@ -18,7 +18,7 @@ Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 %define	majorver	5.2
 Name:		gutenprint
 Version:	%{majorver}.11
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
@@ -26,6 +26,7 @@ Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
 Patch2:		%{name}-am.patch
+Patch3:		ijs-pkgconfig.patch
 URL:		http://sourceforge.net/projects/gimp-print/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
@@ -34,7 +35,7 @@ BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
 %{?with_foomatic:BuildRequires:	foomatic-db-engine >= 3}
 BuildRequires:	gettext-tools >= 0.16
-%{?with_ijs:BuildRequires:	ghostscript-ijs-devel}
+%{?with_ijs:BuildRequires:	ghostscript-ijs-devel >= 9.20-2}
 %{?with_gimp:BuildRequires:	gimp-devel >= 1:2.2.0}
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libpng-devel
@@ -298,6 +299,7 @@ Wtyczka print dla Gimpa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__gettextize}
