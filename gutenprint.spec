@@ -312,7 +312,7 @@ Wtyczka print dla Gimpa.
 	--with%{!?with_cups:out}-cups \
 	--with%{!?with_gimp:out}-gimp2 \
 	--with-gimp2-as-gutenprint \
-	--with%{!?with_ijs:out}-ijs \
+	--with%{!?with_ijs:out}-ghostscript \
 	--with%{!?with_foomatic:out}-foomatic \
 	--with%{!?with_foomatic:out}-foomatic3 \
 	--with-modules=dlopen \
@@ -321,13 +321,9 @@ Wtyczka print dla Gimpa.
 	--disable-static-genppd \
 	--disable-translated-cups-ppds \
 	--enable-cups-level3-ppds \
-	--enable-lexmarkutil \
 	--enable-libgutenprintui2 \
 	--enable-samples \
-	--enable-shared \
-	--enable-user-guide \
-	--enable-xmldef \
-	--without-ghost
+	--enable-shared
 %{__make}
 
 %install
