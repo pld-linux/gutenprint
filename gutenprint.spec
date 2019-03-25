@@ -18,7 +18,7 @@ Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 %define	majorver	5.2
 Name:		gutenprint
 Version:	%{majorver}.11
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
