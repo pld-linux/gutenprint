@@ -1,6 +1,6 @@
---- gimp-print-5.0.0-beta2/configure.ac.orig	2004-12-04 00:53:03.946179000 +0100
-+++ gimp-print-5.0.0-beta2/configure.ac	2004-12-04 01:14:03.633677560 +0100
-@@ -287,24 +287,7 @@
+--- gutenprint-5.2.14/configure.ac.orig	2019-03-23 21:09:21.792451636 +0100
++++ gutenprint-5.2.14/configure.ac	2019-03-23 21:10:02.135566412 +0100
+@@ -353,24 +353,7 @@
      dlopen) [WITH_MODULES]="dlopen";  AC_MSG_RESULT([dlopen]) ;;
      static) [WITH_MODULES]="static";  AC_MSG_RESULT([static]) ;;
      *) AC_MSG_ERROR([${withval}: not a valid module loader]) ;;
@@ -21,7 +21,7 @@
 -  else
 -    AC_MSG_ERROR([--disable-static must be used with --with-modules])
 -  fi
--fi 
+-fi
 +                      ],[WITH_MODULES="yes"])
  
  STP_ARG_ENABLE([debug],

@@ -8,7 +8,7 @@
 +AC_CONFIG_HEADERS([config.h])
  
  dnl Available languages (translations)
- ALL_LINGUAS="cs da de el en_GB es fi fr gl hu it ja nb nl pl pt ru sk sl sv uk zh_CN zh_TW"
+ ALL_LINGUAS="ca cs da de el en_GB es fi fr gl hu it ja nb nl pl pt ru sk sl sv tr uk vi zh_CN zh_TW"
 @@ -475,7 +475,6 @@
  AC_ISC_POSIX
  AC_PROG_AWK
@@ -17,14 +17,14 @@
  AM_PROG_CC_C_O
  AC_PROG_INSTALL
  AC_PROG_LN_S
---- gutenprint-5.2.9/m4extra/glib.m4.orig	2006-01-29 12:53:10.000000000 +0100
-+++ gutenprint-5.2.9/m4extra/glib.m4	2013-03-24 10:01:11.136214098 +0100
+--- gutenprint-5.2.14/m4extra/glib.m4.orig	2019-03-23 21:10:45.971995597 +0100
++++ gutenprint-5.2.14/m4extra/glib.m4	2019-03-23 21:11:09.715200302 +0100
 @@ -5,7 +5,7 @@
- dnl Test for GLIB, and define GLIB_CFLAGS and GLIB_LIBS, if "gmodule" or 
+ dnl Test for GLIB, and define GLIB_CFLAGS and GLIB_LIBS, if "gmodule" or
  dnl gthread is specified in MODULES, pass to glib-config
  dnl
 -AC_DEFUN(AM_PATH_GLIB,
 +AC_DEFUN([AM_PATH_GLIB],
- [dnl 
+ [dnl
  dnl Get the cflags and libraries from the glib-config script
  dnl

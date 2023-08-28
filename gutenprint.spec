@@ -2,48 +2,41 @@
 # - port info_and_pdf_only.patch and install documentation in correct place.
 #
 # Conditional build:
-%bcond_without	cups		# don't build CUPS plugin
-%bcond_without	gimp		# build GIMP plugin subpackage
-%bcond_without	ijs		# don't build IJS server for Ghostscript
-%bcond_without	foomatic	# don't generate foomatic data
-%bcond_without	static_libs	# don't build static library
-#
-%if %{without ijs}
-%undefine	with_foomatic
-%endif
+%bcond_without	cups		# CUPS plugin
+%bcond_without	gimp		# GIMP plugin
+%bcond_without	static_libs	# static libraries
 #
 Summary:	Collection of high-quality printer drivers
 Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 %define	majorver	5.2
 Name:		gutenprint
-Version:	%{majorver}.11
-Release:	6
+Version:	%{majorver}.14
+Release:	1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-# Source0-md5:	fa6083535b7235fe531cd57e7345a81f
+# Source0-md5:	4177da0cb5ce39c6115e54694687d656
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
 Patch2:		%{name}-am.patch
-Patch3:		ijs-pkgconfig.patch
 URL:		http://sourceforge.net/projects/gimp-print/
 BuildRequires:	autoconf >= 2.53
 BuildRequires:	automake >= 1:1.9
 %{?with_cups:BuildRequires:	cups-devel >= 1.2}
 BuildRequires:	docbook-style-dsssl
 BuildRequires:	docbook-utils
-%{?with_foomatic:BuildRequires:	foomatic-db-engine >= 3}
 BuildRequires:	gettext-tools >= 0.16
-%{?with_ijs:BuildRequires:	ghostscript-ijs-devel >= 9.20-2}
-%{?with_gimp:BuildRequires:	gimp-devel >= 1:2.2.0}
+%{?with_gimp:BuildRequires:	gimp-devel >= 1:2.4.0}
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	libusb-devel >= 1.0
 BuildRequires:	openssl-devel
 BuildRequires:	pkgconfig
 BuildRequires:	readline-devel
 BuildRequires:	rpm-perlprov >= 3.0.3-16
+BuildRequires:	rpmbuild(macros) >= 1.745
 BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
 BuildRequires:	texinfo-texi2dvi
@@ -84,8 +77,10 @@ Summary:	libgutenprint library
 Summary(pl.UTF-8):	Biblioteka libgutenprint
 Summary(pt_BR.UTF-8):	Bibliotecas dinâmicas para impressão de alta qualidade
 Group:		Libraries
-Obsoletes:	gimp-print-lib
-Obsoletes:	libgimprint
+Obsoletes:	foomatic-db-gutenprint < 5.2.14
+Obsoletes:	gimp-print-lib < 5
+Obsoletes:	gutenprint-ijs < 5.2.14
+Obsoletes:	libgimprint < 5
 
 %description -n libgutenprint
 libgutenprint library.
@@ -99,8 +94,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libgutenprint
 Summary(pt_BR.UTF-8):	Cabeçalhos e arquivos de desenvolvimento para o libgutenprint
 Group:		Development/Libraries
 Requires:	libgutenprint = %{version}-%{release}
-Obsoletes:	gimp-print-devel
-Obsoletes:	libgimpprint-devel
+Obsoletes:	gimp-print-devel < 5
+Obsoletes:	libgimpprint-devel < 5
 
 %description -n libgutenprint-devel
 Header files for libgutenprint library.
@@ -118,8 +113,8 @@ Summary(pl.UTF-8):	Statyczna biblioteka libgutenprint
 Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com libgutenprint
 Group:		Development/Libraries
 Requires:	libgutenprint-devel = %{version}-%{release}
-Obsoletes:	gimp-print-static
-Obsoletes:	libgimprint-static
+Obsoletes:	gimp-print-static < 5
+Obsoletes:	libgimprint-static < 5
 
 %description -n libgutenprint-static
 libgutenprint static library.
@@ -136,7 +131,7 @@ Summary(pl.UTF-8):	Biblioteka libgutenprintui
 Summary(pt_BR.UTF-8):	Bibliotecas dinâmicas para impressão de alta qualidade
 Group:		Libraries
 Requires:	libgutenprint = %{version}-%{release}
-Obsoletes:	libgimprintui
+Obsoletes:	libgimprintui < 5
 
 %description -n libgutenprintui
 libgutenprintui library.
@@ -152,7 +147,7 @@ Group:		Development/Libraries
 Requires:	gtk+2-devel >= 2.0.0
 Requires:	libgutenprint-devel = %{version}-%{release}
 Requires:	libgutenprintui = %{version}-%{release}
-Obsoletes:	libgimprintui-devel
+Obsoletes:	libgimprintui-devel < 5
 
 %description -n libgutenprintui-devel
 Header files for libgutenprintui lirbary.
@@ -170,7 +165,7 @@ Summary(pl.UTF-8):	Statyczna biblioteka libgutenprintui
 Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com libgutenprintui
 Group:		Development/Libraries
 Requires:	libgutenprintui-devel = %{version}-%{release}
-Obsoletes:	libgimprintui-static
+Obsoletes:	libgimprintui-static < 5
 
 %description -n libgutenprintui-static
 libgutenprintui static library.
@@ -226,7 +221,7 @@ Summary(pt_BR.UTF-8):	Entradas ppd para serem usadas com o cups
 Group:		Applications/Printing
 Requires:	cups >= 1.2
 Requires:	libgutenprint = %{version}-%{release}
-Obsoletes:	gimp-print-cups
+Obsoletes:	gimp-print-cups < 5
 
 %description cups
 Gutenprint as CUPS plugin.
@@ -249,40 +244,13 @@ Gutenprint samples.
 %description samples -l pl.UTF-8
 Przykłady dla Gutenprinta.
 
-%package ijs
-Summary:	gutenprint IJS driver for GhostScript
-Summary(pl.UTF-8):	Sterownik IJS gutenprint dla GhostScripta
-Group:		Applications/Printing
-Requires:	libgutenprint = %{version}-%{release}
-Obsoletes:	gimp-print-ijs
-
-%description ijs
-gutenprint IJS driver for GhostScript.
-
-%description ijs -l pl.UTF-8
-Sterownik IJS gutenprint dla GhostScripta.
-
-%package -n foomatic-db-gutenprint
-Summary:	foomatic data for gutenprint IJS driver
-Summary(pl.UTF-8):	Dane foomatic dla sterownika IJS gutenprint
-Group:		Applications/Printing
-Requires:	%{name}-ijs = %{version}-%{release}
-Requires:	foomatic-db-engine >= 3
-Obsoletes:	foomatic-db-gimp-print
-
-%description -n foomatic-db-gutenprint
-foomatic data for gimp-print IJS driver.
-
-%description -n foomatic-db-gutenprint -l pl.UTF-8
-Dane foomatic dla sterownika IJS gutenprint.
-
 %package -n gimp-plugin-gutenprint
 Summary:	print plugin for Gimp
 Summary(pl.UTF-8):	Wtyczka print dla Gimpa
 Group:		Applications/Printing
-Requires:	gimp >= 1:2.2.0
+Requires:	gimp >= 1:2.4.0
 Requires:	libgutenprint = %{version}-%{release}
-Obsoletes:	gimp-plugin-print
+Obsoletes:	gimp-plugin-print < 5
 # obsolete old plugin which used to come with gimp-print/gutenprint,
 # not the one that comes with gimp
 Obsoletes:	gimp-print < 1:2.0
@@ -298,7 +266,6 @@ Wtyczka print dla Gimpa.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %build
 %{__gettextize}
@@ -307,24 +274,22 @@ Wtyczka print dla Gimpa.
 %{__autoconf}
 %{__automake}
 %configure \
-	%{?debug:--enable-debug} \
-	%{!?with_static_libs:--disable-static} \
+	--enable-cups-level3-ppds \
 	%{!?with_cups:--disable-cups-ppds} \
-	--with%{!?with_cups:out}-cups \
-	--with%{!?with_gimp:out}-gimp2 \
-	--with-gimp2-as-gutenprint \
-	--with%{!?with_ijs:out}-ghostscript \
-	--with%{!?with_foomatic:out}-foomatic \
-	--with%{!?with_foomatic:out}-foomatic3 \
-	--with-modules=dlopen \
+	%{?debug:--enable-debug} \
 	--enable-escputil \
+	--enable-libgutenprintui2 \
 	--disable-rpath \
+	--enable-samples \
+	--enable-shared \
+	--disable-silent-rules \
+	%{!?with_static_libs:--disable-static} \
 	--disable-static-genppd \
 	--disable-translated-cups-ppds \
-	--enable-cups-level3-ppds \
-	--enable-libgutenprintui2 \
-	--enable-samples \
-	--enable-shared
+	--with-cups%{!?with_cups:=no} \
+	--with-gimp2%{!?with_gimp:=no} \
+	--with-gimp2-as-gutenprint \
+	--with-modules=dlopen
 %{__make}
 
 %install
@@ -338,8 +303,8 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}
 %endif
 
 rm -rf doc-installed
-mv -f $RPM_BUILD_ROOT%{_datadir}/gutenprint/doc doc-installed
-mv -f $RPM_BUILD_ROOT%{_datadir}/gutenprint/samples \
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/gutenprint/doc doc-installed
+%{__mv} $RPM_BUILD_ROOT%{_datadir}/gutenprint/samples \
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/%{majorver}/modules/*.{a,la}
@@ -434,22 +399,6 @@ rm -rf $RPM_BUILD_ROOT
 %files samples
 %defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
-
-%if %{with ijs}
-%files ijs
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/ijsgutenprint.%{majorver}
-%{_mandir}/man1/ijsgutenprint.1*
-%endif
-
-%if %{with foomatic}
-%files -n foomatic-db-gutenprint
-%defattr(644,root,root,755)
-%{_datadir}/foomatic/db/source/driver/gutenprint-ijs.%{majorver}.xml
-%{_datadir}/foomatic/db/source/driver/gutenprint-ijs-simplified.%{majorver}.xml
-%{_datadir}/foomatic/db/source/opt/gutenprint-ijs.%{majorver}-*.xml
-%{_datadir}/foomatic/db/source/opt/gutenprint-ijs-simplified.%{majorver}-*.xml
-%endif
 
 %if %{with gimp}
 %files -n gimp-plugin-gutenprint
