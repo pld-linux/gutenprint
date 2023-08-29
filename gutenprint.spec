@@ -8,19 +8,19 @@
 #
 Summary:	Collection of high-quality printer drivers
 Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
-%define	majorver	5.2
+%define	majorver	5.3
 Name:		gutenprint
-Version:	%{majorver}.15
+Version:	%{majorver}.4
 Release:	1
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
-# Source0-md5:	d0769dd44be985f1135518d4a5c73a8a
+# Source0-md5:	537851d7b82e77a4c466c2c4f3a6a43e
 Patch0:		%{name}-opt.patch
 Patch1:		%{name}-static.patch
 Patch2:		%{name}-am.patch
 URL:		http://sourceforge.net/projects/gimp-print/
-BuildRequires:	autoconf >= 2.53
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.9
 %{?with_cups:BuildRequires:	cups-devel >= 1.2}
 BuildRequires:	docbook-style-dsssl
@@ -30,7 +30,7 @@ BuildRequires:	gettext-tools >= 0.16
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libpng-devel
 BuildRequires:	libtiff-devel
-BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	libtool >= 2:2
 BuildRequires:	libusb-devel >= 1.0
 BuildRequires:	openssl-devel
 BuildRequires:	pkgconfig
@@ -270,7 +270,7 @@ Wtyczka print dla Gimpa.
 %build
 %{__gettextize}
 %{__libtoolize}
-%{__aclocal} -I m4 -I m4extra
+%{__aclocal} -I m4 -I m4local
 %{__autoconf}
 %{__automake}
 %configure \
@@ -308,8 +308,10 @@ rm -rf doc-installed
 	$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/%{majorver}/modules/*.{a,la}
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgutenprint*.la
 # locales source
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/locale/*/gutenprint_*.po
+%{__rm} $RPM_BUILD_ROOT%{_localedir}/*/gutenprint_*.po
 
 %find_lang %{name}
 
@@ -326,12 +328,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README doc/FAQ.html doc-installed/{gutenprint.pdf,gutenprint-users-manual.pdf}
 %attr(755,root,root) %{_libdir}/libgutenprint.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgutenprint.so.2
+%attr(755,root,root) %ghost %{_libdir}/libgutenprint.so.9
 %dir %{_libdir}/%{name}
 %dir %{_libdir}/%{name}/%{majorver}
 %dir %{_libdir}/%{name}/%{majorver}/modules
 %attr(755,root,root) %{_libdir}/%{name}/%{majorver}/modules/color-traditional.so
 %attr(755,root,root) %{_libdir}/%{name}/%{majorver}/modules/print-*.so
+%{_libdir}/%{name}/%{majorver}/config.summary
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/%{majorver}
 #%{_mandir}/man7/gutenprint-*.7*
@@ -340,7 +343,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc-installed/reference-html
 %attr(755,root,root) %{_libdir}/libgutenprint.so
-%{_libdir}/libgutenprint.la
 %{_includedir}/gutenprint
 %{_pkgconfigdir}/gutenprint.pc
 #%{_mandir}/man3/gutenprint.3*
@@ -354,12 +356,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -n libgutenprintui
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgutenprintui2.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgutenprintui2.so.1
+%attr(755,root,root) %ghost %{_libdir}/libgutenprintui2.so.2
 
 %files -n libgutenprintui-devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libgutenprintui2.so
-%{_libdir}/libgutenprintui2.la
 %{_includedir}/gutenprintui2
 %{_pkgconfigdir}/gutenprintui2.pc
 
@@ -378,7 +379,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with cups}
 %files cups
 %defattr(644,root,root,755)
-%doc src/cups/{README,command.txt,commands}
+%doc src/cups/{command.txt,commands}
 %{_sysconfdir}/cups/command.types
 %attr(755,root,root) %{_bindir}/cups-calibrate
 %attr(755,root,root) %{_sbindir}/cups-genppd.%{majorver}
@@ -387,7 +388,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{cupslibdir}/filter/commandtocanon
 %attr(755,root,root) %{cupslibdir}/filter/commandtoepson
 %attr(755,root,root) %{cupslibdir}/filter/rastertogutenprint.%{majorver}
-%attr(755,root,root) %{cupslibdir}/backend/gutenprint52+usb
+%attr(755,root,root) %{cupslibdir}/backend/gutenprint53+usb
 %{_datadir}/cups/calibrate.ppm
 %dir %{_datadir}/cups/usb
 %{_datadir}/cups/usb/net.sf.gimp-print.usb-quirks

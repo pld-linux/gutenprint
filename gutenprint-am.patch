@@ -1,6 +1,6 @@
---- gutenprint-5.2.9/configure.ac.orig	2013-03-24 09:45:04.996254643 +0100
-+++ gutenprint-5.2.9/configure.ac	2013-03-24 09:46:44.106250484 +0100
-@@ -140,7 +140,7 @@
+--- gutenprint-5.3.4/configure.ac.orig	2023-08-28 21:39:01.887771589 +0200
++++ gutenprint-5.3.4/configure.ac	2023-08-28 21:39:34.084263832 +0200
+@@ -189,7 +189,7 @@ gutenprintui2_version=${GUTENPRINT_VERSI
  GUTENPRINTUI2_LIBDEPS="${GUTENPRINTUI2_LIBDEPS} \$(GUTENPRINT_LIBS)"
  
  dnl Specify a configuration file.
@@ -8,9 +8,9 @@
 +AC_CONFIG_HEADERS([config.h])
  
  dnl Available languages (translations)
- ALL_LINGUAS="ca cs da de el en_GB es fi fr gl hu it ja nb nl pl pt ru sk sl sv tr uk vi zh_CN zh_TW"
-@@ -475,7 +475,6 @@
- AC_ISC_POSIX
+ ALL_LINGUAS="ca cs da de el en_GB es fi fr gl hr hu it ja nb nl pl pt ru sk sl sv tr uk vi zh_CN zh_TW"
+@@ -556,7 +556,6 @@ AM_ICONV_LINK
+ AC_SEARCH_LIBS([strerror],[cposix])
  AC_PROG_AWK
  AC_PROG_CC
 -AM_PROG_CC_STDC

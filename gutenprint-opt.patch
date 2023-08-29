@@ -1,13 +1,13 @@
---- gutenprint-5.2.14/configure.ac.orig	2023-08-28 07:39:13.244083623 +0200
-+++ gutenprint-5.2.14/configure.ac	2023-08-28 17:00:23.323469623 +0200
-@@ -666,17 +666,6 @@ if test x$ac_compiler_gnu = "xyes"; then
+--- gutenprint-5.3.4/configure.ac.orig	2020-06-05 01:28:41.000000000 +0200
++++ gutenprint-5.3.4/configure.ac	2023-08-28 21:38:43.451204802 +0200
+@@ -753,17 +753,6 @@ if test x$ac_compiler_gnu = "xyes"; then
    if test x${USE_MAINTAINER_MODE} = xyes ; then
-     STP_ADD_COMPILER_ARGS([-D_POSIX_C_SOURCE=200809L -std=c99 -pedantic -Waggregate-return -Wcast-qual -Wshadow -Wredundant-decls],, [GNUCFLAGS])
+     STP_ADD_COMPILER_ARGS([ -pedantic -Waggregate-return -Wcast-qual -Wshadow -Wredundant-decls],, [GNUCFLAGS])
    fi
 -  if test x$ENABLE_DEBUG = xyes ; then
 -    STP_ADD_COMPILER_ARG([-g])
 -  else
--    STP_ADD_FIRST_COMPILER_ARG([-O6 -O3 -O2 -O1 -O])
+-    STP_ADD_FIRST_COMPILER_ARG([-O3 -O2 -O1 -O])
 -  fi
 -else
 -  if test x$ENABLE_DEBUG = xyes ; then
@@ -18,7 +18,7 @@
  fi
  if test x$ENABLE_PROFILE = xyes ; then
    STP_ADD_COMPILER_ARG([-pg])
-@@ -933,13 +922,6 @@ AM_CONDITIONAL(BUILD_MODULES, test x$MOD
+@@ -1019,13 +1008,6 @@ AM_CONDITIONAL(BUILD_MODULES, test x$MOD
  
  AM_CONDITIONAL(BUILD_GENPPD_STATIC, test x"$STATIC_GENPPD" = xyes)
  
