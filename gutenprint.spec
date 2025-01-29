@@ -3,7 +3,7 @@
 #
 # Conditional build:
 %bcond_without	cups		# CUPS plugin
-%bcond_without	gimp		# GIMP plugin
+%bcond_with	gimp		# GIMP plugin
 %bcond_without	static_libs	# static libraries
 #
 Summary:	Collection of high-quality printer drivers
@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	Zestaw wysokiej jakości sterowników do drukarek
 %define	majorver	5.3
 Name:		gutenprint
 Version:	%{majorver}.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Printing
 Source0:	http://downloads.sourceforge.net/gimp-print/%{name}-%{version}.tar.bz2
